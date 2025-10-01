@@ -5,11 +5,11 @@ variable "flow" {
 
 variable "cloud_id" {
   type    = string
-  default = "b1gn3ndpua1j6jaabf79"
+  default = "b1gkuqs6ubuo8pkmr699"
 }
 variable "folder_id" {
   type    = string
-  default = "b1gfu61oc15cb99nqmfe"
+  default = "b1gfb5ua8q592p00ulsg"
 }
 
 variable "test" {
@@ -20,4 +20,3 @@ variable "test" {
     core_fraction = 20
   }
 }
-

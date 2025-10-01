@@ -1,0 +1,72 @@
+---
+- name: Install and configure Nginx
+  hosts: webservers
+  become: yes
+  vars:
+    nginx_port: 80
+    server_name: "{{ ansible_hostname }}"
+    
+  tasks:
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Ensure Nginx is started and enabled
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Create custom web directory
+      file:
+        path: /var/www/html/custom
+        state: directory
+        mode: '0755'
+
+    - name: Deploy custom index.html
+      copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Welcome to {{ server_name }}</title>
+          </head>
+          <body>
+              <h1>Hello from Ansible!</h1>
+              <p>Server: {{ server_name }}</p>
+              <p>Nginx successfully installed and configured.</p>
+          </body>
+          </html>
+        dest: /var/www/html/custom/index.html
+        mode: '0644'
+
+    - name: Create custom Nginx configuration
+      template:
+        src: nginx-custom.j2
+        dest: /etc/nginx/sites-available/custom
+      notify: Reload Nginx
+
+    - name: Enable custom site
+      file:
+        src: /etc/nginx/sites-available/custom
+        dest: /etc/nginx/sites-enabled/custom
+        state: link
+      notify: Reload Nginx
+
+    - name: Disable default Nginx site
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: Reload Nginx
+
+  handlers:
+    - name: Reload Nginx
+      systemd:
+        name: nginx
+        state: reloaded
