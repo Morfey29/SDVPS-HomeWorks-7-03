@@ -28,11 +28,11 @@
 
 screenshot
 
-![Скриншот-1](https://github.com/Morfey29/sdvps-homeworks-7-03/blob/main/img/img1.png)
+![Скриншот-1](https://github.com/Morfey29/SDVPS-HomeWorks-7-03/blob/main/img/img1.jpg)
 
 screenshot
 
-![Скриншот-1](https://github.com/Morfey29/sdvps-homeworks-7-03/blob/main/img/img1.png)
+![Скриншот-1](https://github.com/Morfey29/SDVPS-HomeWorks-7-03/blob/main/img/img2.jpg)
 
 ---
 
@@ -67,5 +67,6 @@ screenshot
 2. [Руководство по Terraform](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/doc). 
 3. [Ansible User Guide](https://docs.ansible.com/ansible/latest/user_guide/index.html).
 1. [Terraform Documentation](https://www.terraform.io/docs/index.html).
+
 
 
